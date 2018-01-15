@@ -1,6 +1,7 @@
 import React from 'react';
 import './SignUpForm.css';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router';
 
 const SignUpForm = ({
     onSubmit,
@@ -34,10 +35,10 @@ const SignUpForm = ({
                     </div>
                 </div>
                 <div className="row right-align">
-                    <input type="submit" className="waves-effect waves-light btn indigo lighten-1" value='Log in' />
+                    <input type="submit" className="waves-effect waves-light btn indigo lighten-1" value='Sign Up' />
                 </div>
                 <div className="row">
-                    <p className="right-align"> New to Tap News? <a href="/signup"> Sign Up</a></p>
+                    <p className="right-align"> Already have an account? <Link to="/login"> Login</Link></p>
                 </div>
             </form>
         </div>

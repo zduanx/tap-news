@@ -2,6 +2,7 @@ import  React from 'react';
 import './NewsPanel.css';
 import NewsCard from '../NewsCard/NewsCard';
 import _ from 'lodash';
+import Auth from '../Auth/Auth';
 
 class NewsPanel extends React.Component {
 
@@ -17,18 +18,26 @@ class NewsPanel extends React.Component {
     }
 
     handleScroll() {
-        const scrollY = window.scrollY 
-                        || window.pageYOffset 
+        const scrollY = window.scrollY
+                        || window.pageYOffset
                         || document.documentElement.scrollYTop;
         if((window.innerHeight + scrollY) >= (document.body.offsetHeight - 50)){
             this.loadMoreNews();
         }
-        
+
     }
 
     loadMoreNews() {
         const news_url = 'http://' + window.location.hostname + ':3000/news';
-        const request = new Request(news_url, {method:'GET'});
+        const request = new Request(
+          news_url,
+          {
+            method:'GET',
+            headers: {
+              'Authorization': 'bearer ' + Auth.getToken(),
+            }
+          }
+        );
 
         fetch(request)
             .then((res) => res.json())
@@ -56,7 +65,7 @@ class NewsPanel extends React.Component {
             </div>
         )
     }
-    
+
     render(){
         if(this.state.news){
             return (

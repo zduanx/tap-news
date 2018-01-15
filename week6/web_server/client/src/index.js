@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import App from './App/App';
-import LoginPage from './Login/LoginPage';
-import SignUpPage from './SignUp/SignUpPage';
+// import App from './App/App';
+
+import {browserHistory, Router} from 'react-router';
+import routes from './routes';
+
 
 ReactDom.render(
-    <App />,
-    // <LoginPage />,
-    // <SignUpPage />,
+    // <App />,
+    <Router history={browserHistory} routes={routes} />,
     document.getElementById('root')
 );
