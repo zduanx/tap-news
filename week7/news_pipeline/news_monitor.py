@@ -15,7 +15,7 @@ cloudAMQP_client = CloudAMQPClient(SCRAPE_NEWS_TASK_QUEUE_URL, SCRAPE_NEWS_TASK_
 REDIS_HOST = 'localhost'
 REDIS_PORT = 6379
 NEWS_TIME_OUT_IN_SECONDS = 3600 * 24 * 3
-SLEEP_TIME_IN_SECONDS = 10
+SLEEP_TIME_IN_SECONDS = 600
 
 redis_client = redis.StrictRedis(REDIS_HOST, REDIS_PORT)
 NEWS_SOURCES = ['cnn', 'abc-news', 'bbc-sport', 'bbc-news', 'the-wall-street-journal', 'the-economist', 'msnbc']

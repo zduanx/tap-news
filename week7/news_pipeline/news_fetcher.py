@@ -14,7 +14,7 @@ DEDUPE_NEWS_TASK_QUEUE_NAME = "tap-news-dedupe-news-task-queue"
 dedupe_news_queue_client = CloudAMQPClient(DEDUPE_NEWS_TASK_QUEUE_URL, DEDUPE_NEWS_TASK_QUEUE_NAME)
 scrape_news_queue_client = CloudAMQPClient(SCRAPE_NEWS_TASK_QUEUE_URL, SCRAPE_NEWS_TASK_QUEUE_NAME)
 
-SLEEP_TIME_IN_SECONDS = 5
+SLEEP_TIME_IN_SECONDS = 4
 
 def handle_message(msg):
     if msg is None or not isinstance(msg, dict):
