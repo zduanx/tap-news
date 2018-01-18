@@ -1,7 +1,6 @@
 #!/bin/bash
 service mongod start
 service redis_6379 start
-redis-cli flushall
 
 pip3 install -r requirements.txt
 
