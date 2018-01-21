@@ -61,6 +61,8 @@ def handle_message(msg):
 
     db[NEWS_TABLE_NAME].replace_one({'digest': task['digest']}, task, upsert=True)
 
+print(">>> DEDUPER: START LAUNCHING...")
+
 while True:
     if cloudAMQP_client is not None:
         msg = cloudAMQP_client.getMessage()

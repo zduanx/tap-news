@@ -14,7 +14,9 @@ DEDUPE_NEWS_TASK_QUEUE_NAME = "tap-news-dedupe-news-task-queue"
 dedupe_news_queue_client = CloudAMQPClient(DEDUPE_NEWS_TASK_QUEUE_URL, DEDUPE_NEWS_TASK_QUEUE_NAME)
 scrape_news_queue_client = CloudAMQPClient(SCRAPE_NEWS_TASK_QUEUE_URL, SCRAPE_NEWS_TASK_QUEUE_NAME)
 
-SLEEP_TIME_IN_SECONDS = 4
+SLEEP_TIME_IN_SECONDS = 2
+
+print(">>> FETCHER: START LAUNCHING...")
 
 def handle_message(msg):
     if msg is None or not isinstance(msg, dict):
@@ -37,17 +39,21 @@ def handle_message(msg):
     article.download()
     article.parse()
     task['text'] = article.text
-
+    print(">>> fetcher: text extracted")
     dedupe_news_queue_client.sendMessage(task)
+    print(">>> fetcher: dedupe message sent")
 
 while True:
     if scrape_news_queue_client is not None:
         msg = scrape_news_queue_client.getMessage()
         if msg is not None:
             # Parse and process the task
+            print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
             try:
                 handle_message(msg)
             except Exception as e:
                 print(e)
                 pass
+            print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
         scrape_news_queue_client.sleep(SLEEP_TIME_IN_SECONDS)
+        dedupe_news_queue_client.sleep(SLEEP_TIME_IN_SECONDS)
