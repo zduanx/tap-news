@@ -20,7 +20,10 @@ SLEEP_TIME_IN_SECONDS = 600
 redis_client = redis.StrictRedis(REDIS_HOST, REDIS_PORT)
 NEWS_SOURCES = ['cnn', 'abc-news', 'bbc-sport', 'bbc-news', 'the-wall-street-journal', 'the-economist', 'msnbc']
 
+print(">>> MONITOR: START LAUNCHING...")
+
 while True:
+    print(">>> MONITOR: start monitor news cycle")
     news_list = news_api_client.getNewsFromSource(NEWS_SOURCES)
 
     number_of_news = 0
@@ -41,4 +44,5 @@ while True:
             cloudAMQP_client.sendMessage(news)
 
     print("Fetched %d news." %number_of_news)
+    print(">>> MONITOR: end monitor news cycle")
     cloudAMQP_client.sleep(SLEEP_TIME_IN_SECONDS)
