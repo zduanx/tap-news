@@ -13,6 +13,7 @@ class CloudAMQPClient:
         self.connection = pika.BlockingConnection(self.parms)
         self.channel = self.connection.channel()
         self.channel.queue_declare(queue=queue_name)
+        print("AMQP connected -> %s" % queue_name)
 
     # send a message
     def sendMessage(self, message):
