@@ -7,3 +7,5 @@ client.add(12, 34, (response) =>{
 client.getNewsSummariesForUser('test_user', 1, (response) =>{
   console.assert(response.result != null);
 });
+
+client.logNewsClickForUser('test_user', 'test_news');

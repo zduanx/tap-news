@@ -10,9 +10,17 @@ router.get('/userId/:userId/pageNum/:pageNum', function(req, res, next) {
   console.log(`Fetching news ... for user "${user_id}" page "${page_num}"`);
   rpc_client.getNewsSummariesForUser(user_id, page_num, function(response){
     res.json(response.result);
-  })
+  });
 });
 
+router.post('/userId/:userId/newsId/:newsId', function(req, res, next) {
+  user_id = req.params['userId'];
+  news_id = req.params['newsId'];
+
+  console.log(`Logging news preference ... for user "${user_id}" page "${news_id}"`);
+  rpc_client.logNewsClickForUser(user_id, news_id);
+  res.status(200);
+});
 // const fakeNews =  [
 //     {'title': 'Zero Motorcycles CTO Abe Askenazi on the future of two-wheeled EVs',
 //      'description': "Electric cars and buses have already begun to take over the world, but the motorcycle industry has been much slower to put out all-electric and hybrid models...",
