@@ -1,6 +1,6 @@
 classes = [
     "World",
-    "US",
+    "U.S.",
     "Business",
     "Technology",
     "Entertainment",
