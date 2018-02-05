@@ -69,7 +69,8 @@ def getNewsSummaries(user_id, page_num):
         del news['text']
         if news['class'] == topPreference:
             news['reason'] = 'Recommend'
-        if news['publishedAt'].date() == datetime.today().date():
+
+        if news['publishedAt'].date() == datetime.utcnow().date():
             news['time'] = 'today'
 
     return json.loads(dumps(sliced_news))
