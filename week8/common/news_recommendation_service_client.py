@@ -1,6 +1,7 @@
 import jsonrpclib
+import ENV
 
-URL = "http://localhost:5050/"
+URL = "http://" + ENV.RECOMMENDATION_SERVER_HOST + ":" + str(ENV.RECOMMENDATION_SERVER_PORT)
 
 client = jsonrpclib.ServerProxy(URL)
 

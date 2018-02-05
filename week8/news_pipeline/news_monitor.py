@@ -5,15 +5,15 @@ import sys
 import datetime
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'common'))
-
+import ENV
 import news_api_client
 from cloudAMQP_client import CloudAMQPClient
-SCRAPE_NEWS_TASK_QUEUE_URL = "amqp://tgfywhzj:rGu2ImqiXK0PnjlgaiUcwJc0Arq5vo9-@donkey.rmq.cloudamqp.com/tgfywhzj"
-SCRAPE_NEWS_TASK_QUEUE_NAME = "tap-news-scrape-news-task-queue"
+SCRAPE_NEWS_TASK_QUEUE_URL = ENV.SCRAPE_NEWS_TASK_QUEUE_URL
+SCRAPE_NEWS_TASK_QUEUE_NAME = ENV.SCRAPE_NEWS_TASK_QUEUE_NAME
 cloudAMQP_client = CloudAMQPClient(SCRAPE_NEWS_TASK_QUEUE_URL, SCRAPE_NEWS_TASK_QUEUE_NAME)
 
-REDIS_HOST = 'localhost'
-REDIS_PORT = 6379
+REDIS_HOST = ENV.REDIS_HOST
+REDIS_PORT = ENV.REDIS_PORT
 NEWS_TIME_OUT_IN_SECONDS = 3600 * 24 * 3
 SLEEP_TIME_IN_SECONDS = 1500
 

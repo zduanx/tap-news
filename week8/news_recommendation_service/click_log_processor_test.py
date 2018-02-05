@@ -6,11 +6,10 @@ from datetime import datetime
 
 # import common package in parent directory
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'common'))
-
+import ENV
 import mongodb_client
 
-PREFERENCE_MODEL_TABLE_NAME = "user_preference_model"
-NEWS_TABLE_NAME = "news"
+PREFERENCE_MODEL_TABLE_NAME = ENV.PREFERENCE_MODEL_TABLE_NAME
 
 NUM_OF_CLASSES = 8
 
@@ -20,7 +19,7 @@ def test_basic():
     db[PREFERENCE_MODEL_TABLE_NAME].delete_many({"userId": "test_user"})
 
     msg = {"userId": "test_user",
-           "newsId": "test_news",
+           "newsId": "67f8b39c8954bfb8865505f2cc416a9b",
            "timestamp": str(datetime.utcnow())}
 
     click_log_processor.handle_message(msg)

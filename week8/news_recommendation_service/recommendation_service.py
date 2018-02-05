@@ -8,11 +8,11 @@ from jsonrpclib.SimpleJSONRPCServer import SimpleJSONRPCServer
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'common'))
 
 import mongodb_client
+import ENV
+PREFERENCE_MODEL_TABLE_NAME = ENV.PREFERENCE_MODEL_TABLE_NAME
 
-PREFERENCE_MODEL_TABLE_NAME = "user_preference_model"
-
-SERVER_HOST = 'localhost'
-SERVER_PORT = 5050
+SERVER_HOST = ENV.RECOMMENDATION_SERVER_HOST
+SERVER_PORT = ENV.RECOMMENDATION_SERVER_PORT
 
 # Ref: https://www.python.org/dev/peps/pep-0485/#proposed-implementation
 # Ref: http://stackoverflow.com/questions/5595425/what-is-the-best-way-to-compare-floats-for-almost-equality-in-python

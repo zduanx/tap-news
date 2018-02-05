@@ -19,7 +19,7 @@ import sys
 
 # import common package in parent directory
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'common'))
-
+import ENV
 import mongodb_client
 from cloudAMQP_client import CloudAMQPClient
 
@@ -30,11 +30,11 @@ ALPHA = 0.1
 
 SLEEP_TIME_IN_SECONDS = 1
 
-LOG_CLICKS_TASK_QUEUE_URL = "amqp://tgfywhzj:rGu2ImqiXK0PnjlgaiUcwJc0Arq5vo9-@donkey.rmq.cloudamqp.com/tgfywhzj"
-LOG_CLICKS_TASK_QUEUE_NAME = "tap-news-log-clicks-task-queue"
+LOG_CLICKS_TASK_QUEUE_URL = ENV.LOG_CLICKS_TASK_QUEUE_URL
+LOG_CLICKS_TASK_QUEUE_NAME = ENV.LOG_CLICKS_TASK_QUEUE_NAME
 
-PREFERENCE_MODEL_TABLE_NAME = "user_preference_model"
-NEWS_TABLE_NAME = "news"
+PREFERENCE_MODEL_TABLE_NAME = ENV.PREFERENCE_MODEL_TABLE_NAME
+NEWS_TABLE_NAME = ENV.NEWS_TABLE_NAME
 
 cloudAMQP_client = CloudAMQPClient(LOG_CLICKS_TASK_QUEUE_URL, LOG_CLICKS_TASK_QUEUE_NAME)
 

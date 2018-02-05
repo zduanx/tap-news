@@ -3,13 +3,13 @@ import sys
 import datetime
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'common'))
-
+import ENV
 from cloudAMQP_client import CloudAMQPClient
 
-SCRAPE_NEWS_TASK_QUEUE_URL = "amqp://tgfywhzj:rGu2ImqiXK0PnjlgaiUcwJc0Arq5vo9-@donkey.rmq.cloudamqp.com/tgfywhzj"
-SCRAPE_NEWS_TASK_QUEUE_NAME = "tap-news-scrape-news-task-queue"
-DEDUPE_NEWS_TASK_QUEUE_URL = "amqp://tgfywhzj:rGu2ImqiXK0PnjlgaiUcwJc0Arq5vo9-@donkey.rmq.cloudamqp.com/tgfywhzj"
-DEDUPE_NEWS_TASK_QUEUE_NAME = "tap-news-dedupe-news-task-queue"
+SCRAPE_NEWS_TASK_QUEUE_URL = ENV.SCRAPE_NEWS_TASK_QUEUE_URL
+SCRAPE_NEWS_TASK_QUEUE_NAME = ENV.SCRAPE_NEWS_TASK_QUEUE_NAME
+DEDUPE_NEWS_TASK_QUEUE_URL = ENV.DEDUPE_NEWS_TASK_QUEUE_URL
+DEDUPE_NEWS_TASK_QUEUE_NAME = ENV.DEDUPE_NEWS_TASK_QUEUE_NAME
 
 def clearQueue(queue_url, queue_name):
     queue_client = CloudAMQPClient(queue_url, queue_name)

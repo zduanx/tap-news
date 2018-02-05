@@ -2,9 +2,13 @@
 from jsonrpclib.SimpleJSONRPCServer import SimpleJSONRPCServer
 
 import operations
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '../common'))
+import ENV
 
-SERVER_HOST = 'localhost'
-SERVER_PORT = 4040
+SERVER_HOST = ENV.BACKEND_SERVER_HOST
+SERVER_PORT = ENV.BACKEND_SERVER_PORT
 
 def add(num1, num2):
     """Test method"""

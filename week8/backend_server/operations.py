@@ -12,17 +12,18 @@ from bson.json_util import dumps
 sys.path.append(os.path.join(os.path.dirname(__file__), '../common'))
 import mongodb_client # pylint: disable=import-error, wrong-import-position
 import news_recommendation_service_client
+import ENV
 
 from cloudAMQP_client import CloudAMQPClient
-LOG_CLICKS_TASK_QUEUE_URL = "amqp://tgfywhzj:rGu2ImqiXK0PnjlgaiUcwJc0Arq5vo9-@donkey.rmq.cloudamqp.com/tgfywhzj"
-LOG_CLICKS_TASK_QUEUE_NAME = "tap-news-log-clicks-task-queue"
+LOG_CLICKS_TASK_QUEUE_URL = ENV.LOG_CLICKS_TASK_QUEUE_URL
+LOG_CLICKS_TASK_QUEUE_NAME = ENV.LOG_CLICKS_TASK_QUEUE_NAME
 queue_client = CloudAMQPClient(LOG_CLICKS_TASK_QUEUE_URL, LOG_CLICKS_TASK_QUEUE_NAME)
 
-REDIS_HOST = 'localhost'
-REDIS_PORT = 6379
+REDIS_HOST = ENV.REDIS_HOST
+REDIS_PORT = ENV.REDIS_PORT
 redis_client = redis.StrictRedis(REDIS_HOST, REDIS_PORT)
 
-NEWS_TABLE_NAME = "news_fetched"
+NEWS_TABLE_NAME = ENV.NEWS_TABLE_NAME
 NEWS_LIST_BATCH_SIZE = 10
 NEWS_LIMIT = 200
 USER_NEWS_TIME_OUT_IN_SCONDS = 60

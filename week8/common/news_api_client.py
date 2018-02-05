@@ -1,8 +1,10 @@
 import requests
 from json import loads
 
-NEWS_API_ENDPOINT = "https://newsapi.org/v1/"
-NEWS_API_KEY = '2762963b26bc4d66aac801c83c240d6f'
+import ENV
+
+NEWS_API_ENDPOINT = ENV.NEWS_API_ENDPOINT
+NEWS_API_KEY = ENV.NEWS_API_KEY
 
 ARTICLES_API = 'articles'
 

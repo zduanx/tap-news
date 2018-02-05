@@ -7,18 +7,18 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 
 # import common package in parent directory
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'common'))
-
+import ENV
 import mongodb_client
 import news_topic_modeling_service_client
 
 from cloudAMQP_client import CloudAMQPClient
 
-DEDUPE_NEWS_TASK_QUEUE_URL = "amqp://tgfywhzj:rGu2ImqiXK0PnjlgaiUcwJc0Arq5vo9-@donkey.rmq.cloudamqp.com/tgfywhzj"
-DEDUPE_NEWS_TASK_QUEUE_NAME = "tap-news-dedupe-news-task-queue"
+DEDUPE_NEWS_TASK_QUEUE_URL = ENV.DEDUPE_NEWS_TASK_QUEUE_URL
+DEDUPE_NEWS_TASK_QUEUE_NAME = ENV.DEDUPE_NEWS_TASK_QUEUE_NAME
 
 dedupe_news_queue_client = CloudAMQPClient(DEDUPE_NEWS_TASK_QUEUE_URL, DEDUPE_NEWS_TASK_QUEUE_NAME)
 SLEEP_TIME_IN_SECONDS = 1
-NEWS_TABLE_NAME = "news_fetched"
+NEWS_TABLE_NAME = ENV.NEWS_TABLE_NAME
 
 SAME_NEWS_SIMILARITY_THRESHOLD = 0.9
 
@@ -66,7 +66,8 @@ def handle_message(msg):
     if title is not None:
         topic = news_topic_modeling_service_client.classify(title)
         task['class'] = topic
-        
+
+    print(task)
     db[NEWS_TABLE_NAME].replace_one({'digest': task['digest']}, task, upsert=True)
 
 print(">>> DEDUPER: START LAUNCHING...")

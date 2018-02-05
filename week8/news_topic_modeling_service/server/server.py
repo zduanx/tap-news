@@ -15,11 +15,13 @@ from watchdog.events import FileSystemEventHandler
 # import packages in trainer
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'trainer'))
 import news_cnn_model
+sys.path.append(os.path.join(os.path.dirname(__file__), '../..', 'common'))
+import ENV
 
 learn = tf.contrib.learn
 
-SERVER_HOST = 'localhost'
-SERVER_PORT = 6060
+SERVER_HOST = ENV.TOPIC_MODELING_SERVER_HOST
+SERVER_PORT = ENV.TOPIC_MODELING_SERVER_PORT
 
 MODEL_DIR = '../model'
 MODEL_UPDATE_LAG_IN_SECONDS = 10
@@ -102,7 +104,7 @@ def classify(text):
     topic = news_classes.class_map[str(y_predicted[0])]
     print(text)
     print(topic)
-    
+
     return topic
 
 
