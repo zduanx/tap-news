@@ -22,7 +22,7 @@ REDIS_HOST = 'localhost'
 REDIS_PORT = 6379
 redis_client = redis.StrictRedis(REDIS_HOST, REDIS_PORT)
 
-NEWS_TABLE_NAME = "news"
+NEWS_TABLE_NAME = "news_fetched"
 NEWS_LIST_BATCH_SIZE = 10
 NEWS_LIMIT = 200
 USER_NEWS_TIME_OUT_IN_SCONDS = 60

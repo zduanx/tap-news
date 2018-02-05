@@ -8,5 +8,8 @@ def test_basic():
     newsTitle = "alksjdfl;kj aslkdjflkaj alksjd falksdjf lkasdjflkasd flkas jsldkfj alskdf "
     topic = client.classify(newsTitle)
 
+    newsTitle = ""
+    topic = client.classify(newsTitle)
+
 if __name__ == "__main__":
     test_basic()
