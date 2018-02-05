@@ -15,7 +15,7 @@ class NewsCard extends React.Component {
       const request = new Request(
           encodeURI(url),
           {
-            method:'GET',
+            method:'POST',
             headers: {
               'Authorization': 'bearer ' + Auth.getToken(),
             }
